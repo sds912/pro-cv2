@@ -1,0 +1,63 @@
+<div class="template" #content >
+    <div class="row p-0">
+      <div class="col-4 side p-0" >
+         <div class="avatar text-center">
+          <!-- <img [src]="resume?.header?.avatar" [alt]="resume?.header?.firstName" /> -->
+         </div>
+
+         <ul class="coord list-unstyled p-2 mt-3 px-3">
+           <li >
+            <div class="d-flex align-items-center">
+              <div class="mr-3">
+                <i class="fa fa-phone"> </i>  
+              </div>
+              <div class="mx-1"></div>
+              <div> {{resume?.header?.phone}}</div>
+            </div>
+             
+           <li class="d-flex my-2 align-items-center" > <i class="fa fa-envelope"> </i> <div class="mx-1"></div> <div style="max-width: 130px;"> {{resume?.header?.email}}</div> </li>
+           <li class="d-flex align-items-center"> <i class="fa fa-map-marker"> </i> <div class="mx-1"></div > <div style="max-width: 130px;"> {{resume?.header?.city}} - {{resume?.header?.country}}</div></li>
+         </ul>
+      </div>
+      <div class="col-8 body p-0">
+          <div class="profestion mt-5 py-3">
+            <div class="name">{{resume?.header?.firstName }} {{resume?.header?.lastName}}</div>
+            <div class="job-title">{{resume?.header?.jobTitle}}</div>
+          </div>
+
+          <div class="experiences p-2" *ngIf="resume!.experiences!.length > 0">
+            <h3 class="mt-2 mb-3">Experiences professionnelles</h3>
+             <div class="experience mt-2" *ngFor="let exp of resume?.experiences">
+               <div class="text-muted">
+                <span>{{exp?.startDate! | dateFormat}} </span> | 
+                <span> {{exp?.endDate! | dateFormat}}</span>
+               </div>
+               <div>
+                <span class="fw-bolder">{{exp?.jobTitle}}</span> | 
+                <span>{{exp?.city}}</span> ,
+                <span> {{exp?.country}}</span>
+               </div>
+             </div>
+          </div>
+          <div class="experiences p-2" *ngIf="resume!.educations!.length > 0">
+            <h3 class="mt-2 mb-3">Diplomes et Formations</h3>
+             <div class="experience mt-2" *ngFor="let edu of resume?.educations">
+               <div class="fw-bolder">
+                <span class="text-muted">{{edu?.diplome}} </span> | 
+                <span> {{edu?.domaine}}</span>
+               </div>
+               <div class="my-2">
+                <span>{{edu?.school}}</span>
+               </div>
+               <div class="text-muted">
+                <span>{{edu?.month}} {{edu?.year}}</span> | 
+                <span>{{edu?.adresse}}</span>
+               </div>
+             </div>
+          </div>
+      </div>
+
+    </div>
+
+</div>
+

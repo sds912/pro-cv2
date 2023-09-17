@@ -1,0 +1,70 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-12 ">
+            <form  [formGroup]="headerForm!">
+                <div class="row mb-3">
+                  <div class="col-md-5 col-12">
+                    <div class="profil" *ngIf="imageURL && imageURL !== ''">
+                      <img [src]="imageURL" [alt]="imageURL">
+                    </div>
+                  </div>
+                  <div class="col-md-7 col-12 pl-0">
+                    <h3>Photo profil</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                    <label for="profil">
+                      charger une photo
+                      <input type="file" id="profil" accept="image/*" (change)="showPreview($event)" />
+                    </label>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                      <label for="jobTitle" class="form-label">Profession</label>
+                      <input type="text" class="form-control" id="text" formControlName="jobTitle" >
+                    </div>
+              </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="firstName" class="form-label">Pénom</label>
+                        <input type="text" class="form-control" id="text" formControlName="firstName" >
+                      </div>
+                      <div class="col-md-6">
+                        <label for="lastName" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="lastName" formControlName="lastName" >
+                      </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-5">
+                        <label for="country" class="form-label">Pays</label>
+                        <input type="text" class="form-control" id="country" formControlName="country">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="city" class="form-label">Ville</label>
+                        <input type="text" class="form-control" id="city" formControlName="city" >
+                      </div>
+                      <div class="col-md-3">
+                        <label for="postal" class="form-label">Code postal</label>
+                        <input type="text" class="form-control" id="postal" formControlName="postal" >
+                      </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                      <label for="phone" class="form-label">Téléphone</label>
+                      <input type="tel" class="form-control" id="phone" formControlName="phone" >
+                  </div>
+                    <div class="col-md-6">
+                      <label for="inputPassword4" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" formControlName="email" >
+                    </div>
+                </div>
+                
+            </form>
+            <div class="container">
+                <div class="d-flex justify-content-between mt-4">
+                    <button class="btn btn-outline-warning">Retour</button>
+                    <button [disabled]="!headerForm?.valid" class="btn btn-outline-dark" (click)="saveForm()">Continuer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

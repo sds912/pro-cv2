@@ -1,0 +1,19 @@
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-md-2 col-12">
+            <ul class="list-unstyled p-4 bg-dark text-white side-nav">
+                <li (click)="navigate('HEADER')">En-tête</li>
+                <li (click)="navigate('EXPERIENCE')">Expériences</li>
+                <li (click)="navigate('EDUCATION')">Diplômes & Formations</li>
+            </ul>
+        </div>
+        <div class="col-md-5 col-12">
+            <app-header-form *ngIf="step === HEADER" [resume]="resume"></app-header-form>
+            <app-experience *ngIf="step === EXPERIENCE" [resume]="resume" ></app-experience>
+            <app-education *ngIf="step === EDUCATION" [resume]="resume"></app-education>
+        </div>
+        <div class="col-md-5 p-4">
+            <app-templates01></app-templates01>
+        </div>
+    </div>
+</div>

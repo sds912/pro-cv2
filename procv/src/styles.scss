@@ -2,3 +2,26 @@
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+
+html, body{
+    max-width: 100%;
+    overflow-x: hidden;
+    background-color: #f4f4f4;
+}
+
+input, select{
+   border-radius: 0 !important; 
+   color: #5c5c5c !important;
+}
+
+.form-label{
+    font-weight: 500 !important;
+}
+
+.btn{
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    width: 150px !important;
+    height: 45px !important;
+    border-radius: 0 !important;
+}

@@ -1,0 +1,79 @@
+<div class="container mt-3">
+  <div *ngIf="!edit && resume?.educations!.length > 0">
+    <div class="experience mt-2 card card-body" *ngFor="let edu of resume?.educations; let i = index">
+        <div class="d-flex justify-content-between">
+          <div class="fw-bolder">
+            <span>{{edu?.diplome}} </span> | 
+            <span> {{edu?.domaine}}</span>
+           </div>
+          <div>
+            <button class="btn-none" (click)="editEducation(edu, i)"><i class="fa fa-pencil text-muted"></i></button>
+            <button class="btn-none"><i class="fa fa-trash text-muted" (click)="removeEducation(i)"></i></button>
+         </div>
+        </div>
+        
+        <div class="my-1">
+         <span>{{edu?.school}}</span>
+        </div>
+        <div class="text-muted">
+         <span>{{edu?.month}} {{edu?.year}}</span> | 
+         <span>{{edu?.adresse}}</span>
+        </div>
+      </div>
+</div>
+    <div *ngIf="edit || resume?.experiences!.length <= 0">
+        <div class="col-12">
+           <div class="pt-2 pb-4">
+             <h3>Ajouter une nouvelle formation</h3>
+            </div>
+            <form [formGroup]="educationForm!">
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="school" class="form-label">Etablissement</label>
+                        <input type="text" class="form-control" id="school" formControlName="school">
+                      </div>
+                      <div class="col-md-12">
+                        <label for="adresse" class="form-label">Adresse</label>
+                        <input type="text" class="form-control" id="adresse" formControlName="adresse" >
+                      </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="diplome" class="form-label">Diplome</label>
+                        <select class="form-select" aria-label="Default select example" formControlName="diplome">
+                            <option *ngFor="let d of DIPLOMES" [value]="d">{{d}}</option>
+                          </select>
+                      </div>
+                      
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <label for="domaine" class="form-label">Domaine</label>
+                    <input type="text" class="form-control" id="domaine" formControlName="domaine">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                   <label for="startDate" class="form-label">Date d'obtention</label>
+                    <div class="col-md-6">
+                      <label for="startDate" class="form-label">Mois</label>
+                        <select class="form-select" aria-label="Default select example" formControlName="month">
+                          <option *ngFor="let m of MONTHS" [value]="m">{{m}}</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="startDate" class="form-label">Année</label>
+                        <select class="form-select" aria-label="Default select example" formControlName="year">
+                          <option *ngFor="let y of years" [value]="y">{{y}}</option>
+                        </select>
+                      </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    <button class="btn add-button btn-warning" (click)="addEducation()">
+      <span *ngIf="!edit">Ajouter une formation</span>
+      <span *ngIf="edit">Enregistrer</span>
+    </button>
+    <button class="btn continue-button btn-outline-dark">Continuer</button>
+</div>
