@@ -4,8 +4,9 @@ import { CvBuilderService } from 'src/app/core/services/cv-builder.service';
 import { Experience } from 'src/app/models/experience.model';
 import { Resume } from 'src/app/models/resume.model';
 
+
 @Component({
-  selector: 'app-experience',
+  selector: 'app-experience-form',
   templateUrl: './experience-form.component.html',
   styleUrls: ['./experience-form.component.scss']
 })
@@ -19,7 +20,12 @@ export class ExperienceFormComponent implements OnInit {
 
   }
 
+
+
   ngOnInit(): void {
+    if(this.resume?.experiences?.length === 0){
+      this.edit = true;
+    }
     this.experienceForm = this.fb.group({
       jobTitle: new FormControl("", Validators.required),
       employer: new FormControl("", Validators.required),
@@ -27,6 +33,11 @@ export class ExperienceFormComponent implements OnInit {
       city: new FormControl("", Validators.required),
       startDate: new FormControl("", Validators.required),
       endDate: new FormControl("", Validators.required),
+      description: new FormControl(`
+      . Création d'une application web 
+      . Mise en place d'une api rest
+      . Création d'une application mobile 
+      `, Validators.maxLength(200))
     });
   }
 
@@ -74,7 +85,27 @@ export class ExperienceFormComponent implements OnInit {
    })
   }
 
+  saveForm(): void {
+    if(this.resume!.step <= 6){
+      this.resume!.step += 1;
+    }else{
+      this.resume!.step = 4;
+    }
 
+    if(this.resume!.step >= 6){
+      this.resume!.step -= 1;
+    }
+
+    this.cvBuilderService.onStepChange(this.resume!);
+   
+  }
+
+  goBack(): void{
+    if(this.resume?.step! > 1){
+      this.resume!.step -= 1;
+    }
+    this.cvBuilderService.onStepChange(this.resume!);
+  }
 
   
 

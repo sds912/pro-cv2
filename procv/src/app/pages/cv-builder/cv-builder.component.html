@@ -1,18 +1,48 @@
 <div class="container-fluid p-0">
     <div class="row">
-        <div class="col-md-2 col-12">
-            <ul class="list-unstyled p-4 bg-dark text-white side-nav">
-                <li (click)="navigate('HEADER')">En-tête</li>
-                <li (click)="navigate('EXPERIENCE')">Expériences</li>
-                <li (click)="navigate('EDUCATION')">Diplômes & Formations</li>
-            </ul>
+        <div class="col-md-2 col-12 p-0">
+            <div class="side-bar bg-dark">
+                <div class="text-center py-5 border-bottom">
+                    <img src="../../../assets/logo.png" alt="" srcset="" width="130px">
+                </div>
+                <ul class="list-unstyled p-3 text-white side-nav pt-3">
+                    <li  class="mb-3">
+                        <i class="fa fa-check-circle" [class.text-warning]="resume?.step! >= 1" aria-hidden="true"></i>
+                        <span> En-tête</span>
+                    </li>
+                    <li  class="mb-3">
+                        <i class="fa fa-check-circle " [class.text-warning]="resume?.step! >= 2" aria-hidden="true"></i>
+                        <span> Expériences</span>
+                    </li>
+                    <li class="mb-3">
+                        <i class="fa fa-check-circle" [class.text-warning]="resume?.step! >= 3" aria-hidden="true"></i>
+                        <span> Diplômes & Formations</span>
+                    </li>
+                    <li class="mb-3">
+                        <i class="fa fa-check-circle" [class.text-warning]="resume?.step! >= 4" aria-hidden="true"></i>
+                        <span> Compétences</span>
+                    </li>
+                    <li class="mb-3">
+                        <i class="fa fa-check-circle" [class.text-warning]="resume?.step! >= 5" aria-hidden="true"></i>
+                        <span> Languages</span>
+                    </li>
+                </ul>
+               <app-color-pallet></app-color-pallet>
+               <div>
+                <button class="btn btn-warning download-btn" (click)="downloadPdf()">Télécharger mon cv</button>
+               </div>
+            </div>
+         
         </div>
         <div class="col-md-5 col-12">
-            <app-header-form *ngIf="step === HEADER" [resume]="resume"></app-header-form>
-            <app-experience *ngIf="step === EXPERIENCE" [resume]="resume" ></app-experience>
-            <app-education *ngIf="step === EDUCATION" [resume]="resume"></app-education>
+            <app-header-form *ngIf="this.resume?.step === 1" [resume]="resume"></app-header-form>
+            <app-experience-form  *ngIf="this.resume?.step === 2" [resume]="resume" ></app-experience-form>
+            <app-education-form   *ngIf="this.resume?.step === 3" [resume]="resume"></app-education-form>
+            <app-competences-form   *ngIf="this.resume?.step === 4" [resume]="resume"></app-competences-form>
+            <app-languages-form   *ngIf="this.resume?.step === 5" [resume]="resume"></app-languages-form>
         </div>
-        <div class="col-md-5 p-4">
+        <div class="col-md-5 p-4" style="overflow-y: scroll;">
+   
             <app-templates01></app-templates01>
         </div>
     </div>

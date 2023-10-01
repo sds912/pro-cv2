@@ -1,0 +1,6 @@
+<div class="container ps-4">
+    <label class="form-label text-white">Themes</label>
+    <div class="row ps-1">
+        <div class="col-1 pallet-item ms-1" *ngFor="let c of colors" style="background-color: {{c.colors?.secondary}};" (click)="onThemeChange(c)" [class.selected]="resume?.theme?.name === c?.name" ></div>
+    </div>
+</div>

@@ -7,5 +7,10 @@ export interface Header{
     postal?: string;
     phone?: string;
     email?: string;
-    avatar?: string;
+    avatar?: Avatar;
+}
+
+export interface Avatar {
+   localUrl: string;
+   remoteUrl: string;
 }

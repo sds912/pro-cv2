@@ -29,7 +29,7 @@ const MONTHS = [
 
 
 @Component({
-  selector: 'app-education',
+  selector: 'app-education-form',
   templateUrl: './education-form.component.html',
   styleUrls: ['./education-form.component.scss']
 })
@@ -111,10 +111,32 @@ export class EducationFormComponent implements OnInit {
 
  
   initYears(): void{
- // Remplir le tableau avec les 30 dernières années
- for (let i = this.currentYear; i >= this.currentYear - 29; i--) {
-  this.years.push(i.toString());
-}
+  // Remplir le tableau avec les 30 dernières années
+  for (let i = this.currentYear; i >= this.currentYear - 29; i--) {
+    this.years.push(i.toString());
+    }
+  }
+
+  saveForm(): void {
+    if(this.resume!.step <= 6){
+      this.resume!.step += 1;
+    }else{
+      this.resume!.step = 4;
+    }
+
+    if(this.resume!.step >= 6){
+      this.resume!.step -= 1;
+    }
+
+    this.cvBuilderService.onStepChange(this.resume!);
+   
+  }
+
+  goBack(): void{
+    if(this.resume?.step! > 1){
+      this.resume!.step -= 1;
+    }
+    this.cvBuilderService.onStepChange(this.resume!);
   }
  
   

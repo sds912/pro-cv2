@@ -3,3 +3,10 @@
     height: 140px;
     background-color: #196a86;
 }
+.avatar{
+    display: block;
+    width: 210px !important;
+    input{
+        visibility: hidden;
+    }
+}

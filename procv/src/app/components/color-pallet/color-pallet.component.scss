@@ -1,0 +1,14 @@
+.pallet-item{
+    width: 32px;
+    height:32px;
+    transition: border .5s;
+    &:hover{
+        border: 2px solid #FFFFFF;
+        cursor: pointer;
+
+    }
+}
+
+.selected{
+    border: 2px solid #FFFFFF;
+}

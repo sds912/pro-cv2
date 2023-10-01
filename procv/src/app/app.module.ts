@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Templates01Component } from './components/templates/templates01/templates01.component';
 import { Templates02Component } from './components/templates/templates02/templates02.component';
 import { DateFormatPipe } from './date-format.pipe';
+import { CompetencesFormComponent } from './components/forms/competences-form/competences-form.component';
+import { LanguagesFormComponent } from './components/forms/languages-form/languages-form.component';
+import { ColorPalletComponent } from './components/color-pallet/color-pallet.component';
+import { HttpClientModule} from '@angular/common/http';
+import { QuillModule } from 'ngx-quill';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +38,10 @@ import { DateFormatPipe } from './date-format.pipe';
     CvBuilderComponent,
     Templates01Component,
     Templates02Component,
-    DateFormatPipe
+    DateFormatPipe,
+    CompetencesFormComponent,
+    LanguagesFormComponent,
+    ColorPalletComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +49,15 @@ import { DateFormatPipe } from './date-format.pipe';
     NgbModule,
     FontAwesomeModule,
     CarouselModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    QuillModule.forRoot()
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class AppModule { }

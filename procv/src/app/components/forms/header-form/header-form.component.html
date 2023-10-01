@@ -10,9 +10,10 @@
                   </div>
                   <div class="col-md-7 col-12 pl-0">
                     <h3>Photo profil</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                    <label for="profil">
-                      charger une photo
+                    <p class="text-muted">Charger une photo professionnelle qui montre bien ton visage</p>
+                    <label for="profil" class="avatar btn btn-outline-warning" >
+                      <span *ngIf="resume?.header?.avatar === undefined">charger une photo</span>
+                      <span *ngIf="resume?.header?.avatar !== undefined">Changer</span>
                       <input type="file" id="profil" accept="image/*" (change)="showPreview($event)" />
                     </label>
                   </div>
@@ -61,8 +62,8 @@
             </form>
             <div class="container">
                 <div class="d-flex justify-content-between mt-4">
-                    <button class="btn btn-outline-warning">Retour</button>
-                    <button [disabled]="!headerForm?.valid" class="btn btn-outline-dark" (click)="saveForm()">Continuer</button>
+                    <button class="btn btn-outline-warning" *ngIf="this.resume!.step > 1" (click)="goBack()">Retour</button>
+                    <button  class="btn btn-outline-dark" (click)="saveForm()">Continuer</button>
                 </div>
             </div>
         </div>

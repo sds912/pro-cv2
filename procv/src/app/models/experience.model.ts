@@ -5,4 +5,5 @@ export interface Experience {
     city?: string;
     startDate?: string;
     endDate?: string;
+    description?: string;
 }

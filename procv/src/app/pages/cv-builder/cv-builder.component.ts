@@ -1,59 +1,50 @@
-import { Component } from '@angular/core';
-import { HEADER, EDUCATION, EXPERIENCE } from 'src/app-constant';
+import { HttpHeaders } from '@angular/common/http';
+import { Component,OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HEADER, EDUCATION, EXPERIENCE, COLORS } from 'src/app-constant';
 import { CvBuilderService } from 'src/app/core/services/cv-builder.service';
 import { Resume } from 'src/app/models/resume.model';
-
-const initialResume: Resume = {
-  header: {
-    jobTitle: "Ingénieur Etude et Développemnt",
-    firstName: "Papa Babacar Ngor",
-    lastName: "Senghor",
-    phone: "+221777443663",
-    email: "senghor.pape912@hotmail.com",
-    city: "Dakar",
-    country: "Sénégal",
-    postal: "11500",
-    avatar: "../../../assets/avatar.png"
-  },
-  educations: [
-    {
-      school: "Sonatel Academy",
-      adresse: "Dakar-Senegal",
-      diplome: "BTS",
-      domaine: "Développement Web et Mobile",
-      month: "Janv",
-      year: "2023"
-    }
-  ],
-  experiences: [
-    {
-      jobTitle: "Ingénieur Etude et Développemnt",
-      employer: "ATOS",
-      country: "Sénégal",
-      city: "Dakar",
-      startDate: "2023-01-01",
-      endDate: "2024-01-01"
-    }
-  ]
-}
+ 
 
 @Component({
   selector: 'app-cv-builder',
   templateUrl: './cv-builder.component.html',
   styleUrls: ['./cv-builder.component.scss']
 })
-export class CvBuilderComponent {
+export class CvBuilderComponent implements OnInit {
 
   public step = HEADER;
-  public resume:  Resume = {};
+  public resume?:  Resume;
+  public initialResume: Resume = {
+    header: {
+      avatar:{localUrl: "../../../assets/avatar.png", remoteUrl: ""}
+    },
+    educations: [],
+    experiences: [],
+    skills: [],
+    languages: [],
+    step: 1,
+    theme: COLORS[0]
+  }
 
   constructor(private cvBuilderService: CvBuilderService){
-    cvBuilderService.onResumeChange(initialResume);
+    
+  }
+
+
+  ngOnInit(): void {
+   
+    if(localStorage.getItem('pro-cv') !== null){
+      this.initialResume = JSON.parse(localStorage.getItem('pro-cv')!);
+      this.cvBuilderService.onResumeChange(this.initialResume);
+
+    }
     this.cvBuilderService.resume!
     .subscribe(resume =>{
       this.resume = resume;
     })
   }
+  
 
   get HEADER(){
     return HEADER;
@@ -68,5 +59,16 @@ export class CvBuilderComponent {
   navigate(step: string): void {
    this.step = step;
   }
+
+
+  downloadPdf() {
+    this.cvBuilderService.downloadPdf(this.resume!).subscribe((data) => {
+      const blob = new Blob([data], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      window.open(url); // Open the PDF in a new tab/window
+    });
+
+  }
+  
 
 }

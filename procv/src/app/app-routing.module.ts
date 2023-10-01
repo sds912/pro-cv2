@@ -6,10 +6,6 @@ import { CvBuilderComponent } from './pages/cv-builder/cv-builder.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'mon-cv',
     component: CvBuilderComponent
   }
 ];

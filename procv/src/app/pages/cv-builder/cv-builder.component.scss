@@ -1,4 +1,26 @@
 .side-nav{
-    height: 100vh;
+   // height: 100vh !important;
+    li{
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
 
+}
+
+.side-bar{
+    height: 100vh !important;
+    position: relative;
+}
+
+.download-btn{
+   margin: auto;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   margin-left: auto;
+   margin-right: auto;
+   margin-bottom: 20px;
+   width: 170px !important;
 }

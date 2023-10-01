@@ -11,11 +11,15 @@ import { Resume } from 'src/app/models/resume.model';
 })
 export class HeaderFormComponent implements OnInit {
   @Input() public resume?: Resume;
-
+  step?: number;
  
   public imageURL = '';
   public headerForm?: FormGroup;
-  constructor(public fb: FormBuilder, private cvbuilderService: CvBuilderService) {  }
+  constructor(public fb: FormBuilder, private cvbuilderService: CvBuilderService) { 
+    this.cvbuilderService.resume?.subscribe(resume => {
+      this.step = resume?.step;
+    })
+   }
 
   ngOnInit(): void {
     // Reactive Form
@@ -30,10 +34,11 @@ export class HeaderFormComponent implements OnInit {
       phone:     [this.resume?.header?.phone, Validators.required],
       email:     [this.resume?.header?.email, Validators.required]
     })
-    this.imageURL = this.resume?.header?.avatar??"";
+    this.imageURL = this.resume?.header?.avatar?.localUrl??"";
 
     this.headerForm?.valueChanges.subscribe(v => {
-    this.resume!.header = this.headerForm!.value;
+   // this.resume!.header = this.headerForm!.value;
+    this.resume!.header!.avatar!.localUrl = this.imageURL;
     this.cvbuilderService.onResumeChange(this.resume!);
     })
 
@@ -45,6 +50,13 @@ export class HeaderFormComponent implements OnInit {
    * @param event 
    */
   showPreview(event: any) {
+    this.cvbuilderService.uploadPicture(event)?.subscribe(
+      (response: any) => {
+        this.resume!.header!.avatar!.remoteUrl = response?.url;
+        this.cvbuilderService.onResumeChange(this.resume!);
+
+      }
+    )
     const file = (event.target as HTMLInputElement).files![0];
     this.headerForm?.patchValue({
       avatar: file
@@ -54,11 +66,32 @@ export class HeaderFormComponent implements OnInit {
     const reader = new FileReader();
     reader.onload = () => {
       this.imageURL = reader.result as string;
+      this.resume!.header!.avatar!.localUrl = this.imageURL;
+      this.cvbuilderService.onResumeChange(this.resume!);
     }
-    reader.readAsDataURL(file)
+    reader.readAsDataURL(file);
+    
   }
 
   saveForm(): void {
-    console.log(this.headerForm?.value)
+    if(this.resume!.step <= 6){
+      this.resume!.step += 1;
+    }else{
+      this.resume!.step = 4;
+    }
+
+    if(this.resume!.step >= 6){
+      this.resume!.step -= 1;
+    }
+
+    this.cvbuilderService.onStepChange(this.resume!);
+      console.log(this.resume?.step)
+   
+  }
+
+  goBack(): void{
+    if(this.resume?.step! > 1){
+      this.resume!.step -= 1;
+    }
   }
 }
