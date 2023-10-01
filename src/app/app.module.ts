@@ -23,6 +23,7 @@ import { LanguagesFormComponent } from './components/forms/languages-form/langua
 import { ColorPalletComponent } from './components/color-pallet/color-pallet.component';
 import { HttpClientModule} from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { QuillModule } from 'ngx-quill';
     CarouselModule,
     ReactiveFormsModule,
     HttpClientModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    ImageCropperModule
 
   ],
   providers: [],

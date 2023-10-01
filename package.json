@@ -30,6 +30,7 @@
     "bootstrap": "^5.2.3",
     "html-to-pdfmake": "^2.4.25",
     "jspdf": "^2.5.1",
+    "ngx-image-cropper": "^7.0.3",
     "ngx-owl-carousel-o": "^16.0.0",
     "ngx-quill": "^17.0.0",
     "pdfmake": "^0.2.7",
