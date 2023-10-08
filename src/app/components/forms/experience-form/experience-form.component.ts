@@ -23,6 +23,7 @@ export class ExperienceFormComponent implements OnInit {
 
 
   ngOnInit(): void {
+  
     if(this.resume?.experiences?.length === 0){
       this.edit = true;
     }
