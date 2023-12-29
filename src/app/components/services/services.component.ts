@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Resume } from 'src/app/models/resume.model';
@@ -9,6 +10,10 @@ import { Resume } from 'src/app/models/resume.model';
 })
 export class ServicesComponent {
 
-      
+ 
+
+  constructor(private http: HttpClient) {}
+
+ 
 
 }

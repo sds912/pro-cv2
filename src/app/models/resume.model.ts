@@ -11,6 +11,7 @@ export interface Resume {
     languages?: Lang[];
     step: number;
     theme?: PalletColor;
+    templateName?: string;
 }
 
 

@@ -1,4 +1,5 @@
-<div class="container-fluid p-0">
+<div class="container-fluid p-0" [ngStyle]="{'background-color': (resume?.templateName === undefined || isChangingModel) ? resume?.theme?.colors?.muted : 'inherit'}" >
+    
     <div class="row">
         <div class="col-md-2 col-12 p-0">
             <div class="side-bar bg-dark">
@@ -28,12 +29,19 @@
                     </li>
                 </ul>
                <app-color-pallet></app-color-pallet>
+               <button class="btn btn-warning mt-4 " style="width: 202px !important"  *ngIf="!isChangingModel" (click)="isChangingModel = !isChangingModel"> 
+                Changer le modéle 
+              </button>
+              <button class="btn btn-warning mt-4" style="width: 202px !important"  *ngIf="isChangingModel" (click)="isChangingModel = !isChangingModel"> 
+                Appliquer ce model
+              </button>
                <div>
                 <button class="btn btn-warning download-btn" (click)="downloadPdf()">Télécharger mon cv</button>
                </div>
             </div>
          
         </div>
+        <ng-container *ngIf="resume?.templateName !== undefined && !isChangingModel">
         <div class="col-md-5 col-12">
             <app-header-form *ngIf="this.resume?.step === 1" [resume]="resume"></app-header-form>
             <app-experience-form  *ngIf="this.resume?.step === 2" [resume]="resume" ></app-experience-form>
@@ -41,9 +49,23 @@
             <app-competences-form   *ngIf="this.resume?.step === 4" [resume]="resume"></app-competences-form>
             <app-languages-form   *ngIf="this.resume?.step === 5" [resume]="resume"></app-languages-form>
         </div>
-        <div class="col-md-5 p-4" style="overflow-y: scroll;">
-   
-            <app-templates01></app-templates01>
+        <div class="col-md-5 p-2" style="overflow-y: scroll;">
+            <app-templates01 *ngIf="resume?.templateName === 'template0'" ></app-templates01>
+            <app-templates02 *ngIf="resume?.templateName === 'template1'" ></app-templates02>
+            <app-templates03 *ngIf="resume?.templateName === 'template2'" ></app-templates03>
         </div>
+        </ng-container>
+        <ng-container *ngIf="resume?.templateName === undefined || isChangingModel">
+            <div class="col-md-10 col-12">
+               <h1 class="text-center">Choisir un modéle de CV</h1>
+                <div style="height: 92vh;" class=" p-4 pt-0">
+                    <app-choix-template [resume]="this.resume" ></app-choix-template>
+                </div>
+            </div>
+        </ng-container>
+        
     </div>
+   
+
+    
 </div>

@@ -37,9 +37,10 @@ export class HeaderFormComponent implements OnInit {
     this.imageURL = this.resume?.header?.avatar?.localUrl??"";
 
     this.headerForm?.valueChanges.subscribe(v => {
-   // this.resume!.header = this.headerForm!.value;
+    this.resume!.header = this.headerForm!.value;
     this.resume!.header!.avatar!.localUrl = this.imageURL;
     this.cvbuilderService.onResumeChange(this.resume!);
+    localStorage.setItem('pro-cv', JSON.stringify(this.resume))
     })
 
   }
@@ -50,14 +51,9 @@ export class HeaderFormComponent implements OnInit {
    * @param event 
    */
   showPreview(event: any) {
-    this.cvbuilderService.uploadPicture(event)?.subscribe(
-      (response: any) => {
-        this.resume!.header!.avatar!.remoteUrl = response?.url;
-        this.cvbuilderService.onResumeChange(this.resume!);
-
-      }
-    )
     const file = (event.target as HTMLInputElement).files![0];
+     this.saveImageOnline(file);
+   
     this.headerForm?.patchValue({
       avatar: file
     });
@@ -92,6 +88,19 @@ export class HeaderFormComponent implements OnInit {
   goBack(): void{
     if(this.resume?.step! > 1){
       this.resume!.step -= 1;
+    }
+  }
+
+  saveImageOnline(image: File) {
+    if (image) {
+      this.cvbuilderService.uploadImage(image)
+        .subscribe((response: any) => {
+
+          this.resume!.header!.avatar!.remoteUrl = response?.data.url;
+          this.cvbuilderService.onResumeChange(this.resume!);
+          console.log('Image uploaded successfully:', response);
+          // You can handle the response here, e.g., display the uploaded image URL.
+        });
     }
   }
 }

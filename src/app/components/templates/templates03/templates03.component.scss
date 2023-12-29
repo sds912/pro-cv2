@@ -1,0 +1,385 @@
+
+ @page {
+
+     margin: 0px;
+    
+     padding: 0px;
+    
+     size: A4;
+    
+    }
+    
+    
+    body,
+    
+    html {
+    
+     width: 100%;
+    
+     height: 100%;
+    
+     font-family: Arial, Helvetica, sans-serif;
+    
+     font-size: 14px;
+    
+     margin: 0;
+    
+     padding: 0;
+    
+     
+    
+    }
+    
+    
+    
+    .avatar {
+    
+     display: block;
+    
+     
+    
+     background-color: #dfdfdf;
+    
+     margin: 20px auto;
+    
+     margin-bottom: 30px;
+    
+     font-size: 0;
+    
+     width: 130px;
+    
+     height: 130px;
+    
+     border-radius: 50%;
+    
+    }
+    
+    .icon {
+    
+     width: 12px;
+    
+     height: 12px;
+    
+    // background-image: url(./home.png);
+    
+     
+    
+    
+    }
+    
+    .template,
+    
+    table {
+    
+     height: 540px;
+    
+     width: 100%;
+    
+    
+    
+     margin-left: auto;
+    
+     margin-right: auto;
+    
+    }
+    
+    .side-title {
+    
+     text-transform: uppercase;
+    
+     font-size: 16px;
+    
+    }
+    
+    .experiences {
+    
+     margin: 8px;
+    
+     margin-top: -4px !important;
+    
+     padding: 8px;
+    
+    }
+    
+    .experience-item {
+    
+     padding: 8px 12px;
+    
+     border-bottom: 0.5px solid #dfdfdf;
+    
+    }
+    
+    .list-unstyled {
+    
+     list-style: none !important;
+    
+     padding: 0 !important;
+    
+    }
+    
+    .name {
+    
+     font-size: 26px;
+    
+     font-weight: 700;
+    
+     line-height: 20px;
+    
+    }
+    
+    .text-muted {
+    
+     color: #5d5d5d;
+    
+    }
+    
+    .fw-bolder {
+    
+     font-weight: bolder !important;
+    
+     font-size: 13px !important;
+    
+     text-transform: uppercase !important;
+    
+    }
+    
+    .jobTitle {
+    
+     padding: auto;
+    
+     width: 100%;
+    
+     text-align: center;
+    
+     height: 100px;
+    
+     padding-top: 4px;
+    
+    }
+    
+    .jobName {
+    
+     font-size: 16px;
+    
+     font-weight: 500;
+    
+     text-transform: uppercase;
+    
+     line-height: 16px;
+    
+    }
+    
+    .title {
+    
+     text-transform: uppercase;
+    
+     font-size: 22px;
+    
+     font-weight: 700;
+    
+    }
+    
+    .side {
+    
+     width: 100%;
+    
+     height: 1100.5px;
+    
+     max-height: 1100.5px;
+    
+     background-color: white !important;
+    
+     padding: 8px;
+    
+    }
+    
+    .body {
+    
+     width: 100%;
+    
+     height: 1100.5px;
+    
+     max-height: 1100.5px;
+    
+     background-color: white;
+    
+    }
+    
+    
+    .wrapper {
+    
+     width: 100%;
+    
+     height: 3px;
+    
+     background-color: #e8e8e8;
+    
+     margin-top: -2px;
+    
+     border-radius: 0;
+    
+     margin: 2px 0;
+    
+    }
+    
+    
+    .skill-level {
+    
+     height: 3px;
+    
+     width: 120px;
+    
+     background-color: rgb(20, 20, 99);
+    
+     font-size: 0px;
+    
+    }
+    
+    .educations {
+    
+     margin: 8px;
+    
+     padding: 12px;
+    
+    }
+    
+    .education-item {
+    
+     margin-bottom: 8px;
+    
+     border-bottom: 0.5px solid #dfdfdf;
+    
+     padding-bottom: 3px;
+    
+    }
+    
+    
+    .competences {
+    
+     margin-top: 30px;
+    
+    }
+    
+    .langues {
+    
+     margin-top: 30px;
+    
+    }
+    
+    
+    .avatar-name {
+    
+     display: flex;
+    
+     align-items: center;
+    
+    }
+    
+    
+    .icon {
+    
+     display: inline-block;
+    
+    // background-image: url(./home.png);
+    
+     background-size: cover;
+    
+     background-repeat: no-repeat;
+    
+    
+    
+     
+    
+     
+    
+     
+    
+    } 
+    
+    
+    
+    
+    .ligne-verticale {
+    
+     width: 2px; 
+    
+     height: 60%; 
+    
+     background-color: rgb(20, 20, 99);
+    
+     position: relative; 
+    
+     margin-left: auto;
+    
+    }
+    
+    
+    
+    .end{
+    
+     height: 7%;
+    
+     background-color: rgb(20, 20, 99);
+    
+     border-radius: 50% 50% 0 0;
+    
+    }
+    
+    
+    /*body  */
+    
+    .cordonne{
+    
+     height: 20%; 
+    
+     display: flex;
+    
+     justify-content: center; /* Pour l'alignement horizontal au centre */
+    
+     align-items: center;
+    
+    }
+    
+    .cordonne-item{
+    
+     height: 70%;
+    
+     width: 70%;
+    
+     background-color: rgb(20, 20, 99);
+    
+     
+    
+     align-items: center;
+    
+     
+    
+    }
+    
+    
+    
+    span{
+    
+     color: black;
+    
+    }
+    
+    
+    .p-cord{
+    
+     margin-left: 40px;
+    
+     color: white;
+    
+     font-size: 12px;
+    
+     font-weight: bold;
+    
+     
+    
+     
+    
+    }
+    
+    
+    

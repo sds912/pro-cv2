@@ -23,7 +23,11 @@ import { LanguagesFormComponent } from './components/forms/languages-form/langua
 import { ColorPalletComponent } from './components/color-pallet/color-pallet.component';
 import { HttpClientModule} from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
-import { ImageCropperModule } from 'ngx-image-cropper';
+import { UploadImageComponent } from './components/upload-image/upload-image.component';
+import { ImageCropperModule } from 'ngx-img-cropper';
+import { Templates03Component } from './components/templates/templates03/templates03.component';
+import { ChoixTemplateComponent } from './components/choix-template/choix-template.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -42,11 +46,15 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     DateFormatPipe,
     CompetencesFormComponent,
     LanguagesFormComponent,
-    ColorPalletComponent
+    UploadImageComponent,
+    ColorPalletComponent,
+    Templates03Component,
+    ChoixTemplateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     NgbModule,
     FontAwesomeModule,
     CarouselModule,
@@ -54,6 +62,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     HttpClientModule,
     QuillModule.forRoot(),
     ImageCropperModule
+  
 
   ],
   providers: [],

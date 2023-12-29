@@ -2,7 +2,7 @@
   <div class="template" #content >
     <div class="row p-0">
       <div class="col-4 side p-0" style="background-color: {{resume?.theme?.colors?.primary}};" >
-         <div class="avatar text-center" style="border: 4px solid {{resume?.theme?.colors?.muted}}; background-image: url({{resume?.header?.avatar?.localUrl}})">
+         <div class="avatar text-center bg-white " style="border: 4px solid {{resume?.theme?.colors?.muted}}; background-image: url({{resume?.header?.avatar?.localUrl}})">
          </div>
          <ul class="coord list-unstyled p-2 mt-2">
            <li >
@@ -41,12 +41,12 @@
          </div>
       </div>
       <div class="col-8 body p-0">
-          <div class="profestion mt-5 py-3" style="background-color: {{resume?.theme?.colors?.secondary}};">
+          <div class="profestion mt-5 pt-0" style="background-color: {{resume?.theme?.colors?.secondary}};">
             <div class="name">{{resume?.header?.firstName }} {{resume?.header?.lastName}}</div>
             <div class="job-title">{{resume?.header?.jobTitle}}</div>
           </div>
 
-          <div class="experiences p-2" *ngIf="resume?.experiences!.length > 0">
+          <div class="experiences px-2 " *ngIf="resume?.experiences!.length > 0">
             <h3 class="mt-2 mb-2">Experiences professionnelles</h3>
              <div class="experience mt-2" [class.border-bottom]="i < (resume?.experiences?.length!-1) " *ngFor="let exp of resume?.experiences; let i = index">
                <div class="text-muted">
@@ -59,7 +59,8 @@
                <div class="ps-2">
                 <div>
                   <span class="fw-bolder">{{exp?.jobTitle}} | </span> 
-                  <span>{{exp?.employer}}</span>
+                  <span>{{exp?.employer}} | </span>
+                  <span>{{exp?.contract}}</span>
                  </div>
                  <div class="mt-1" style="margin-bottom: -8px;">
                   <div [innerHTML]="exp?.description"></div>
@@ -67,7 +68,7 @@
                </div>
              </div>
           </div>
-          <div class="experiences p-2" *ngIf="resume?.educations!.length > 0">
+          <div class="experiences px-2 pb-5" *ngIf="resume?.educations!.length > 0">
             <h3 class="mt-2 mb-2">Diplomes et Formations</h3>
              <div class="experience mt-2" *ngFor="let edu of resume?.educations">
               <div>

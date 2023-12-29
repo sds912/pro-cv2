@@ -12,10 +12,22 @@ import { Resume } from 'src/app/models/resume.model';
 })
 export class ExperienceFormComponent implements OnInit {
 
+  contracts: string[] = ['CDI', 'CDD', 'STAGE', 'FREELANCE'];
   experienceForm?: FormGroup;
   indexToEdit?: number;
   @Input() public resume?: Resume;
   edit = false;
+
+  editOptions= {
+    toolbar: [
+      [{ 'list': 'bullet'}],
+      ['bold', 'italic', 'underline'],        // toggled buttons
+
+    ]
+};
+
+
+
   constructor(private fb: FormBuilder, private cvBuilderService: CvBuilderService){
 
   }
@@ -34,10 +46,13 @@ export class ExperienceFormComponent implements OnInit {
       city: new FormControl("", Validators.required),
       startDate: new FormControl("", Validators.required),
       endDate: new FormControl("", Validators.required),
+      contract: new FormControl("CDI", Validators.required),
       description: new FormControl(`
-      . Création d'une application web 
-      . Mise en place d'une api rest
-      . Création d'une application mobile 
+      <ul>
+        <li>Création d'une application web </li>
+        <li>Mise en place d'une api rest</li>
+        <li>Création d'une application mobile</li>
+      </ul> 
       `, Validators.maxLength(200))
     });
   }

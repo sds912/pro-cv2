@@ -2,10 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CvBuilderService } from 'src/app/core/services/cv-builder.service';
 import { Education } from 'src/app/models/education.model';
-import { Experience } from 'src/app/models/experience.model';
 import { Resume } from 'src/app/models/resume.model';
 
-const DIPLOMES = ["BAC", "BTS", "DEUG", "MASTER", "LICENCE"];
+const DIPLOMES = ["BAC", "BTS", "DEUG", "MASTER", "LICENCE", "CERTIFICAT", "BFEM"];
 const MONTHS = [
   "Janv",
   "Fév",

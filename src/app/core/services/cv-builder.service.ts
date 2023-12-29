@@ -11,6 +11,9 @@ const LOCAL_BASE_URL = "http://localhost:8080/api/v1";
 })
 export class CvBuilderService {
 
+  private apiKey = 'de0f1cd7ac737d66c1a05242065f3c3d';
+  private apiUrl = 'https://api.imgbb.com/1/upload';
+
   public resume? : BehaviorSubject<Resume> = new BehaviorSubject({
     step: 1
   })
@@ -20,13 +23,11 @@ export class CvBuilderService {
    }
 
    onResumeChange(resume: Resume){
-    localStorage.setItem('pro-cv', JSON.stringify(resume));
     this.resume?.next(resume);
     localStorage.setItem('pro-cv', JSON.stringify(resume));
    }
 
    onStepChange(resume: Resume){
-      localStorage.setItem('pro-cv', JSON.stringify(resume));
       this.resume?.next(resume);
       localStorage.setItem('pro-cv', JSON.stringify(resume));
    }
@@ -35,29 +36,30 @@ export class CvBuilderService {
     const local = `${LOCAL_BASE_URL}/pdf`;
     const remote = `${REMOTE_BASE_URL}/pdf`;
 
-    return this.http.post(remote, resume, {
+    return this.http.post(local, resume, {
       responseType: 'blob',
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     });
    }
 
-   uploadPicture(event: any): any{
+   uploadPicture(file: File): any{
     const local = `${LOCAL_BASE_URL}/upload`;
     const remote = `${REMOTE_BASE_URL}/upload`;
-    let fileList: FileList = event.target.files;
-    if (fileList.length < 1) {
-      return;
-    }
-    
-    let file: File = fileList[0];
+  
     let formData:FormData = new FormData();
     formData.append('uploadFile', file);
     formData.append('name', file.name);
     
-   return  this.http.post(remote, formData)
+   return  this.http.post(local, formData)
 }
 
- 
+uploadImage(image: File) {
+  const formData = new FormData();
+  formData.append('image', image);
+  formData.append('key', this.apiKey);
+
+  return this.http.post(this.apiUrl, formData);
+}
 
   
 }

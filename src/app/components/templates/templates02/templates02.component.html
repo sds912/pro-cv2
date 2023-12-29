@@ -1,1 +1,288 @@
-<p>templates02 works!</p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>pro-cv</title>
+    <style>
+
+            @page { margin: 0px; padding:0px; size: A4; }
+
+
+            .w-100{
+                width: 100%;
+            }
+
+            body, html{
+                width: 100%;
+                height: 100%;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 11px;
+                margin: 0;
+                padding: 0;
+            }
+          .avatar{
+            display: block;
+            background-color: #dfdfdf;
+            margin: 20px auto;
+            margin-bottom: 30px;
+            font-size: 0;
+            width: 120px;
+            height: 140px;
+            text-align: center;
+            padding-top: 10px;
+        }
+        .avatar-img{
+                width: 80px;
+                height: 90px;
+            }
+        .icon{
+            width: 12px;
+            height: 12px;
+        }
+        .template, table{
+            height: 540px;
+            width:  100%;
+            /* to centre page on screen*/
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+        .side-title{
+          text-transform: uppercase;
+          font-size: 12px;
+        }
+        .experiences{
+            margin-top: -4px !important;
+            padding: 4px;
+        }
+        .experience-item{
+          padding: 8px 3px;
+          border-bottom: .5px solid #dfdfdf;
+        }
+        .list-unstyled{
+            list-style: none !important;
+            padding: 0 !important;
+          
+        }
+        .name{
+            font-size:   18px;
+            font-weight: 700;
+            line-height: 20px;
+            text-transform: uppercase;
+
+        }
+        .text-muted{
+            color: #5d5d5d;
+        }
+        .fw-bolder{
+            font-weight: bolder !important;
+            font-size: 13px !important;
+            text-transform: uppercase !important;
+        }
+        .jobTitle{
+            padding: auto;
+            width: 100%;
+            text-align: center;
+            height: 100px;
+            padding-top: 4px;
+          ;
+
+
+        }
+        .jobName{
+            font-size: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            line-height: 28px;
+        }
+        .title{
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .side{
+            width: 100%;
+            height: 1100.5px;
+            max-height: 1100.5px;
+            padding: 12px;
+            background-color: #19092c;
+        }
+        .body{
+           width:100%;
+           height: 1100.5px;
+           max-height: 1100.5px;
+        }
+       
+        .wrapper{
+            width: 100%;
+            height: 3px;
+            background-color: #e8e8e8;
+            margin-top: -2px;
+            border-radius: 0;
+            margin: 2px 0;
+            
+        }
+
+        .skill-level{
+                height: 3px;
+                width: 120px;
+                background-color: #f4f1de;
+                font-size: 0px;
+            }
+        .educations{
+            padding: 12px;
+        }
+        .education-item{
+          border-bottom: .5px solid #dfdfdf;
+          padding: 8px 12px;
+
+
+        }
+        .experience, .education{
+            padding: 8px;
+            background-color: #19092c;
+            color: #FFFFFF;
+            font-size: 22px;
+            text-transform: uppercase;
+        }
+        .competences{
+            margin-top: 30px;
+
+        }
+        .langues{
+            margin-top: 30px;
+        }
+
+        ul{
+            list-style: none !important;
+            padding: 0;
+        }
+
+        .side-title{
+            padding: 10px;
+            color: #FFFFFF;
+            font-size: 11px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="template bg-white">
+        <table style="width: 100%; height: 75px; margin-bottom: -20px;">
+           <tr>
+              <td style="width: 80%; padding: 30px;">
+                  <h3 class="name" >
+                    <span >{{resume?.header?.firstName}}</span>
+                    <span >{{resume?.header?.lastName}}</span>
+                  </h3>
+                  <h4 class="jobName">{{resume?.header?.jobTitle}}</h4>
+              </td>
+              <td style="width: 20%; padding: 10px;">
+               <div class="avatar" style="border: 10px solid {{resume?.theme?.colors?.secondary}};">
+                 <img class="avatar-img" [src]="resume?.header?.avatar?.localUrl" alt="avatar">
+               </div>
+              </td>
+           </tr>
+        </table>
+        <table class="table">
+            <tr class="w-100">
+                <td style="width: 25%">
+                    <div class="side"  style="background-color:{{resume?.theme?.colors?.primary}};">
+                        <div>
+                            <h3 class="side-title" style="background-color: {{resume?.theme?.colors?.secondary}};">Profil</h3>
+                            <ul>
+                                <li style="color: #FFFFFF; margin-bottom: -20px;">
+                                 <h4>
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/pro-cv-3c0d2.appspot.com/o/procv%2Flocation.png?alt=media&token=a6df765d-39bb-4558-8f6a-6fcaf0a3b5a0&_gl=1*8icsm5*_ga*MjAyOTcwOTE0MS4xNjk3MjQ0MDc2*_ga_CW55HF8NVT*MTY5NzI5NzkzMS40LjEuMTY5NzI5NzkzOS41Mi4wLjA." class="icon" alt="">
+                                    <span style="font-size: 12px; margin-left: 5px; font-weight: 600;">Adresse</span>
+                                 </h4>
+                                 <p style="margin-top: -8px;" >
+                                    <span  >{{resume?.header?.country}}</span>
+                                    <span >{{resume?.header?.city}}</span>
+                                </p>
+                                </li >
+                                <li style="color: #FFFFFF; margin-bottom: -20px;" >
+                                    <h4>
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/pro-cv-3c0d2.appspot.com/o/procv%2Femail.png?alt=media&token=d23848f0-5187-4d8d-9ebf-b40997211fc3&_gl=1*57lx34*_ga*MjAyOTcwOTE0MS4xNjk3MjQ0MDc2*_ga_CW55HF8NVT*MTY5NzI5NzkzMS40LjEuMTY5NzI5ODA5Ny42MC4wLjA." alt="" class="icon">
+                                        <span style="font-size: 12px; margin-left: 5px; font-weight: 600;">Email</span>
+                                    </h4>
+                                    <p style="margin-top: -8px;" >{{resume?.header?.email}}</p>
+                                 </li>
+                                 <li style="color: #FFFFFF;">
+                                    <h4>
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/pro-cv-3c0d2.appspot.com/o/procv%2Fphone.png?alt=media&token=6c1cd54c-947f-4d9b-a1cc-be6e8b4d705e&_gl=1*93dx0*_ga*MjAyOTcwOTE0MS4xNjk3MjQ0MDc2*_ga_CW55HF8NVT*MTY5NzI5NzkzMS40LjEuMTY5NzI5ODIxMS42MC4wLjA." class="icon" alt="">
+                                        <span style="font-size: 12px; margin-left: 5px; font-weight: 600;">Téléphone</span>
+                                    </h4>
+                                    <p style="margin-top: -8px;"  >{{resume?.header?.phone}}</p>
+                                 </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="side-title" style="background-color: {{resume?.theme?.colors?.secondary}};" >Compétences</h3>
+                            <ul>
+                                <li style="color: #FFFFFF;" *ngFor="let skill of resume?.skills">
+                                    <span style="font-size: 11px;">{{skill?.name}}</span>
+                                    <div class="wrapper">
+                                        <div class="skill-level" style="background-color: {{resume?.theme?.colors?.secondary}}; width: {{skill?.level}}">.</div>
+                                      </div>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div>
+                            <h3 class="side-title" style="background-color: {{resume?.theme?.colors?.secondary}};">Langues</h3>
+                            <ul>
+                                <li style="color: #FFFFFF;" *ngFor="let lang of resume?.languages">
+                                    <span>{{lang.name}}</span>
+                                    <div class="wrapper">
+                                        <div class="skill-level" style="background-color: {{resume?.theme?.colors?.secondary}}; width:{{lang?.level}}">.</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 75%">
+                    <div class="body">
+                       <div class="experiences">
+                          <h3 class="experience" style="background-color: {{resume?.theme?.colors?.primary}};">Experiences</h3>
+                          <div class="experience-item" *ngFor="let exp of resume!.experiences">
+                            <div style="display: flex;">
+                                <div style="width: 22%; font-size: 10px;">
+                                 <p>{{exp?.startDate}}</p>
+                                 <p>{{exp?.endDate}}</p>
+                                </div>
+                                <div style="width: 78%;">
+                                   <h3 style="font-size: 12px; font-weight: 700;">{{exp?.jobTitle}}</h3>
+                                  <span>{{exp?.employer}}</span> | <span>{{exp.contract}}</span> 
+                                   <div style="margin-left: -20px;" [innerHTML]="exp.description"></div>
+                                </div>
+                            </div>
+                          </div>
+                       </div>
+                       <div class="educations" >
+                        <h3 class="education" style="background-color: {{resume?.theme?.colors?.primary}};">Educations</h3>
+                        <div class="education-item" *ngFor="let edu of resume?.educations">
+                            <div style="display: flex;">
+                                <div style="width: 15%;">
+                                 <p>{{edu.month}} {{edu?.year}}</p>
+                                </div>
+                                <div style="width: 85%;">
+                                   <h3 style="font-size: 12px;">{{edu?.diplome}} | {{edu?.domaine}}</h3>
+                                  <span>{{edu?.adresse}}</span> 
+                                </div>
+                            </div>
+                          </div>
+                     </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
